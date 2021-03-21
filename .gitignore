@@ -1,0 +1,33 @@
+### Go
+
+/go/build
+/go/*.exe
+/go/*.exe~
+/go/*.dll
+/go/*.so
+/go/*.dylib
+/go/*.test
+/go/*.out
+
+### Java
+
+/java/build
+/java/**/*.class
+/java/**/*.jar
+/java/**/*.tmp
+/java/.idea
+/java/**/*.iml
+
+### Kotlin
+
+/kotlin/.gradle
+/kotlin/.idea
+/kotlin/**/*.iml
+
+### Rust
+
+/rust/target/
+/rust/Cargo.lock
+/rust/**/*.rs.bk
+/rust/.idea
+/rust/**/*.iml
