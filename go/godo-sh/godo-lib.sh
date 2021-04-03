@@ -14,13 +14,12 @@ printUsage() {
   println "\t" "./godo [-noclear] [help]" "\t" "Show usage"
   println "\t" "./godo [-noclear] fmt   " "\t" "Format"
   println "\t" "./godo [-noclear] test  " "\t" "Format -> test"
-  println "\t" "./godo [-noclear] play  " "\t" "Format -> test -> run playground"
+  println "\t" "./godo [-noclear] vet   " "\t" "Format -> test -> vet"
+  println "\t" "./godo [-noclear] play  " "\t" "Format -> test -> vet -> run playground"
   println "Option:"
   println "\t" "'-noclear'" "\t" "skips screen clearing"
 }
 
-# println prints the arguments then a line feed.
-# $@: List of text strings to print
 println() {
   for s in "$@"
   do
@@ -56,12 +55,7 @@ else
   clear
 fi
 
-if [[ "$1" == "help" ]]; then
-  printUsage
-  exit 0
-fi
-
-if [[ "$1" == "" ]]; then
+if [[ "$1" == "" || "$1" == "help" ]]; then
   printUsage
   exit 0
 fi
