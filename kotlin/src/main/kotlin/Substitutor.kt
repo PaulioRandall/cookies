@@ -2,8 +2,7 @@ import AnyResult.Companion.bad
 import java.lang.Exception
 import kotlin.math.max
 
-/******************************************************************************
- * Substitutes variable declarations within template strings (stencils)
+/* Substitutes variable declarations within template strings (stencils)
  *
  * @property[regex] Regular expression used to find variable declarations
  * within strings
@@ -13,7 +12,7 @@ import kotlin.math.max
  * variables; 0 by default (whole match)
  * @property[variables] Function that accepts variable names and returns the
  * associated value
- *****************************************************************************/
+ */
 data class Substitutor(
   val regex: Regex,
   val replaceGroup: Int = 0,
@@ -21,12 +20,8 @@ data class Substitutor(
   val variables: (String) -> String?
 ) {
 
-  /****************************************************************************
-   * Populates the variables within the supplied stencil string throwing an
-   * exception if any problems occur
-   *
-   * @param[stencil] The string containing placeholder variables to populate
-   ***************************************************************************/
+  // Populates the variables within the supplied stencil string throwing an
+  // exception if any problems occur.
   fun stamp(stencil: String): String {
 
     val minSize = max(replaceGroup + 1, keyGroup + 1)
@@ -53,12 +48,8 @@ data class Substitutor(
     return result
   }
 
-  /****************************************************************************
-   * Populates the variables within the supplied stencil string returning an
-   * error result instead of throwing an exception
-   *
-   * @param[stencil] The string containing placeholder variables to populate
-   ***************************************************************************/
+  // Populates the variables within the supplied stencil string returning an
+  // error result instead of throwing an exception.
   fun safeStamp(stencil: String): AnyResult<String> {
 
     val minSize = max(replaceGroup + 1, keyGroup + 1)
@@ -87,13 +78,8 @@ data class Substitutor(
 
   companion object {
 
-    /****************************************************************************
-     * Creates a new [Substitutor] using a bash style '${...}' regular
-     * expression to identify variables
-     *
-     * @param[variables] Function that accepts variable names and returns the
-     * associated value
-     ***************************************************************************/
+    // Creates a new [Substitutor] using a bash style '${...}' regular
+    // expression to identify variables.
     fun bashStyle(variables: (String) -> String?) = Substitutor(
       "\\\$\\{([a-zA-Z0-9_]+)}".toRegex(),
       0,

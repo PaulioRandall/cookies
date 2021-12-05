@@ -3,17 +3,17 @@ import java.nio.file.Files
 import java.nio.file.Path
 import java.util.*
 
-// Represents a store for key value pairs
+// Represents a store for key value pairs.
 interface KeyValueMedia {
 
-  // Reads a key value store into a map
+  // Reads a key value store into a map.
   fun read(): AnyResult<Map<String, String>>
 
-  // Writes a map to a key value store file
+  // Writes a map to a key value store file.
   fun write(map: Map<String, String>): BinaryResult
 }
 
-// Implementation of [KeyValueMedia] that uses files as the media
+// Implementation of [KeyValueMedia] that uses files as the media.
 class KeyValueFile(val path: Path): KeyValueMedia {
 
   // Matches true if:
@@ -23,7 +23,7 @@ class KeyValueFile(val path: Path): KeyValueMedia {
   val KEY_REGEX = "^[^\\S\\r\\n]*([^=\\r\\n\\s][^=\\r\\n]*?)[^\\S\\r\\n]*\$".toRegex()
 
   // Matches true if:
-  // - There are NO carriage returns '\r' or newlines '\n'
+  // - There are NO carriage returns '\r' or newlines '\n'.
   val VALUE_REGEX = "^[^\\r\\n]*\$".toRegex()
 
   // Matches true if:
@@ -33,7 +33,7 @@ class KeyValueFile(val path: Path): KeyValueMedia {
   //   equals symbol
   val KEY_VALUE_REGEX = "^[^\\S\\r\\n]*([^=\\r\\n\\s][^=\\r\\n]*?)[^\\S\\r\\n]*=([^\\r\\n]*)\$".toRegex()
 
-  // Returns true if the key value file exists and thus can be read
+  // Returns true if the key value file exists and thus can be read.
   fun doesFileExist() = Files.exists(path)
 
   // {@inheritDoc}
